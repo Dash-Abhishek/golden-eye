@@ -108,7 +108,7 @@ class ProminentObjectProcessor(
 
         val objectIndex = 0
         val hasValidObjects = objects.isNotEmpty() &&
-            (customModelPath == null || DetectedObjectInfo.hasValidLabels(objects[objectIndex]))
+            (customModelPath == null || DetectedObjectInfo.hasValidLabels(objects[objectIndex]) && DetectedObjectInfo.hasThreshHoldConfidence(objects[objectIndex]))
         if (!hasValidObjects) {
             confirmationController.reset()
             workflowModel.setWorkflowState(WorkflowState.DETECTING)

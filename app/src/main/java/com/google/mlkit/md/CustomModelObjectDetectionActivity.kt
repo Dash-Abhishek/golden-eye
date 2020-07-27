@@ -280,7 +280,7 @@ class CustomModelObjectDetectionActivity : AppCompatActivity(), OnClickListener 
             objectToSearch.observe(this@CustomModelObjectDetectionActivity, Observer { detectObject ->
                 val productList: List<Product> = detectObject.labels.map { label ->
 
-                    Product("" /* imageUrl */, label.text, "" /* subtitle */)
+                    Product("" /* imageUrl */, label.text, "confidence: "+label.confidence /* subtitle */)
                 }
                 workflowModel?.onSearchCompleted(detectObject, productList)
             })
@@ -384,6 +384,6 @@ class CustomModelObjectDetectionActivity : AppCompatActivity(), OnClickListener 
 
     companion object {
         private const val TAG = "CustomModelODActivity"
-        private const val CUSTOM_MODEL_PATH = "custom_models/model.tflite"
+        private const val CUSTOM_MODEL_PATH = "custom_models/lowes_products_model_quant.tflite"
     }
 }

@@ -84,5 +84,11 @@ class DetectedObjectInfo(
             return detectedObject.labels.isNotEmpty()
                     && detectedObject.labels.none { label -> label.text == INVALID_LABEL }
         }
+
+        fun hasThreshHoldConfidence(detectedObject: DetectedObject): Boolean {
+            Log.e(TAG,"Confidence:"+ detectedObject.labels[0].confidence)
+            return detectedObject.labels.isNotEmpty()
+                    && detectedObject.labels[0].confidence >= 0.75f;
+        }
     }
 }

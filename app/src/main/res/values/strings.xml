@@ -10,10 +10,10 @@
   <string name="mode_odt_live_subtitle">A device’s live camera can be used to detect objects in an environment.</string>
   <string name="mode_odt_static_title">Object Detection: Static Image</string>
   <string name="mode_odt_static_subtitle">One or more objects can be detected from a provided image.</string>
-  <string name="mode_barcode_live_title">Barcode Scanning</string>
-  <string name="mode_barcode_live_subtitle">Read data encoded in most standard barcode formats.</string>
-  <string name="custom_model_live_title">Object Detection: Live Camera with Custom Classification (Birds)</string>
-  <string name="custom_model_live_subtitle">A device\'s live camera can be used to detect birds in an environment.</string>
+  <string name="mode_barcode_live_title">Self Checkout</string>
+  <string name="mode_barcode_live_subtitle">Scan barcode for hasselless checkout</string>
+  <string name="custom_model_live_title">Search products through lenses</string>
+  <string name="custom_model_live_subtitle">Search products with just your camera.</string>
   <string name="settings_title">MLKit Showcase Settings</string>
   <string name="cd_settings_button">Settings</string>
   <string name="cd_close_button">Back</string>
