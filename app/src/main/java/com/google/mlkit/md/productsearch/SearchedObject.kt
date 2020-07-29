@@ -44,4 +44,9 @@ class SearchedObject(
         Utils.getCornerRoundedBitmap(detectedObject.getBitmap(), objectThumbnailCornerRadius)
             .also { objectThumbnail = it }
     }
+
+    @Synchronized
+    fun getObjectLabel(): String {
+        return detectedObject.labels[0].text;
+    }
 }

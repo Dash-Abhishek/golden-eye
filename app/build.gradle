@@ -61,4 +61,5 @@ dependencies {
     implementation 'com.google.mlkit:object-detection-custom:16.1.0'
 
     api 'com.google.guava:guava:27.1-jre'
+    implementation 'androidx.palette:palette-ktx:1.0.0'
 }

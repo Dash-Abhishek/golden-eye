@@ -21,15 +21,21 @@ import android.animation.AnimatorSet
 import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
+import android.graphics.drawable.Drawable
 import android.hardware.Camera
 import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.view.View.OnClickListener
+import android.widget.Button
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
+import androidx.core.graphics.drawable.DrawableCompat
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import androidx.palette.graphics.Palette
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.bottomsheet.BottomSheetBehavior
@@ -289,7 +295,8 @@ class CustomModelObjectDetectionActivity : AppCompatActivity(), OnClickListener 
             // to present search result.
             searchedObject.observe(this@CustomModelObjectDetectionActivity, Observer { searchedObject ->
                 objectThumbnailForBottomSheet = searchedObject.getObjectThumbnail()
-                bottomSheetTitleView?.text = getString(R.string.buttom_sheet_custom_model_title)
+                bottomSheetTitleView?.text = searchedObject.getObjectLabel()
+                bottomSheetTitleView?.background = getColorSwatch(searchedObject.getObjectThumbnail())?.let { ColorDrawable(it) }
                 productRecyclerView?.adapter = ProductAdapter(searchedObject.productList)
                 slidingSheetUpFromHiddenState = true
                 bottomSheetBehavior?.peekHeight =
@@ -379,6 +386,20 @@ class CustomModelObjectDetectionActivity : AppCompatActivity(), OnClickListener 
         val shouldPlaySearchButtonEnteringAnimation = wasSearchButtonGone && searchButton?.visibility == View.VISIBLE
         searchButtonAnimator?.let {
             if (shouldPlaySearchButtonEnteringAnimation && !it.isRunning) it.start()
+        }
+    }
+
+    @Synchronized
+    private fun getColorSwatch(bitmap: Bitmap): Int? {
+        Log.e(TAG,bitmap.toString());
+        val vibrantSwatch = Palette.from(bitmap).generate().vibrantSwatch
+//        Log.e(TAG, "extracted body text color: ${vibrantSwatch.rgb.toString()}")
+
+        if (vibrantSwatch != null) {
+
+            return vibrantSwatch.rgb
+        }else{
+            return 255;
         }
     }
 
